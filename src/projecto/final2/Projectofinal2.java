@@ -22,8 +22,8 @@ import java.util.Scanner;
 public class Projectofinal2 {
     
     static  String nom;
-    static int hp=100,atkp=0,defp=0;
-    static boolean buffr,buffb;
+    static int hp=100,atkp=0,defp=0,ron=0;
+    static boolean buff1,buff2;
     static card[] card=new card[52];
     //todas las variables que necesitare en la mayoria de la clase y lo pongo en global
     public static void main(String[] args) {
@@ -35,14 +35,20 @@ public class Projectofinal2 {
         
         pantalla pan=new pantalla();
         //todavia no
-        /*do{
+        
+        do{
         nom=JOptionPane.showInputDialog("Cual es tu nombre:♥");
         }while(nom.isEmpty());
+        /*
         JOptionPane.showMessageDialog(null,"owo");
-        pantalla.getFrames();*/
+        pantalla.getFrames();
+        JOptionPane.showInputDialog("▯");
         
-        
-        
+        char[] a=new char[]{'⚪','⚪','⚪','⚪','⚪','⚪','⚪','⚪','⚪'};
+        int r=sc.nextInt();
+        a[r]='X';
+        JOptionPane.showMessageDialog(null,"🚩───"+a[0]+"───"+a[1]+"──["+a[2]+" Jefe]──"+a[3]+"───"+a[4]+"──["+a[5]+" Jefe]──"+a[6]+"───"+a[7]+"──[👑"+a[8]+" Jefe Final]");
+        */
         //int a= Integer.parseInt("9");
         int alv=0, cont=0;
         char s='a';
@@ -78,7 +84,7 @@ public class Projectofinal2 {
     }
     
     public static String tostats() {//enseñar stats
-        return "Nombre: " + nom + "\n" + 
+        return nom + "\n" + 
                "vida: " + hp + "\n" + 
                "atk: " + atkp + "\n" + 
                "def: " + defp + "\n";
