@@ -9,23 +9,42 @@ package projecto.final2;
  * @author longf
  */
 public class card {
+    private String sim;
     private int val;
-    private char sim;
+    private char sim2;
     private int color;
+    private boolean have;
+
+     public String tocard() {
+        if (color==1)
+            return " "+sim+" "+sim2;
+        else
+            return " "+sim+" "+sim2;
+    }
 
     @Override
     public String toString() {
-        return "card{" + "val=" + val + ", sim=" + sim + ", color=" + color + '}';
+        return "card{" + "sim=" + sim + ", val=" + val + ", sim2=" + sim2 + ", color=" + color + ", have=" + have + '}';
     }
-    public String tocard() {
-        if (color==1)
-            return val+" "+sim+"rojo";
-        else
-            return val+" "+sim+"negro";
+    public card() {
     }
-    
-    
-    
+
+    public card(String sim, int val, char sim2, int color, boolean have) {
+        this.sim = sim;
+        this.val = val;
+        this.sim2 = sim2;
+        this.color = color;
+        this.have = have;
+    }
+
+    public String getSim() {
+        return sim;
+    }
+
+    public void setSim(String sim) {
+        this.sim = sim;
+    }
+
     public int getVal() {
         return val;
     }
@@ -34,12 +53,12 @@ public class card {
         this.val = val;
     }
 
-    public char getSim() {
-        return sim;
+    public char getSim2() {
+        return sim2;
     }
 
-    public void setSim(char sim) {
-        this.sim = sim;
+    public void setSim2(char sim2) {
+        this.sim2 = sim2;
     }
 
     public int getColor() {
@@ -50,15 +69,13 @@ public class card {
         this.color = color;
     }
 
-    public card() {
+    public boolean isHave() {
+        return have;
     }
 
-    public card(int val, char sim, int color) {
-        this.val = val;
-        this.sim = sim;
-        this.color = color;
+    public void setHave(boolean have) {
+        this.have = have;
     }
+
     
-
-
 }
