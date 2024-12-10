@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 
 import java.util.Random;
 import java.util.Scanner;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -26,35 +27,27 @@ public class Projectofinal2 {
     static int hp=50,atkp=2,defp=2,ronda=0;
     static int cont,ecard;
     static card[] card=new card[53];
-    static enemigos enen=new enemigos();
+    static ArrayList<enemigos> ene=new ArrayList();
     
     //todas las variables que necesitare en la mayoria de la clase y lo pongo en global
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Scanner tl = new Scanner(System.in);
         Random rand=new Random();
-        
+        inicio ini=new inicio ();
         pantalla pan=new pantalla();
-        enen.setNombre("muneco");//poner primer enemigo
-        enen.setHp(10);
-        enen.setAtkp(0);
-        enen.setDefp(2);
+        
+        ene.add(new enemigos("muñeco", 10, 0, 2,true));
+        ene.add(new enemigos("🌳¿un arbol?🌳", 23, 1, 2,true));
+        ene.add(new enemigos("🌶EL chile🌶️", 20, 5, 0, true));
+        ene.add(new enemigos("📦Una caja📦", 25, 2, 3,true));
+        ene.add(new enemigos("🛡tanque🛡️", 30, 0, 4,true));
+        ene.add(new enemigos("👑¿El jefaso?👑", 40, 5, 5,true));
         //todavia no
-        /*
-        do{
-        nom=JOptionPane.showInputDialog("Cual es tu nombre:♥");
-        }while(nom.isEmpty());
-        //stats1.setText(Projectofinal2.tostats());
-        
-        JOptionPane.showMessageDialog(null,"owo");
-        pantalla.getFrames();
-        JOptionPane.showInputDialog("▯");
-        */
         
         
         
-        
-        //int a= Integer.parseInt("9");
+        int a= Integer.parseInt("9");
         int color=0,cont=0;
         String signo1="?";
         char signo2='?';
@@ -94,77 +87,53 @@ public class Projectofinal2 {
             System.out.printf ("verficacion de cartas"+card[i]);
             System.out.println();
         }
+        //ImageIcon icono = new ImageIcon(Projectofinal2.class.getResource("/recursos/istockphoto-1441015286-612x612.jpg"));
         
-        pan.reiniciarcard();
-        pan.reiniciarpantalla();
-        pan.setVisible(true);
+
+
+        ini.setVisible(true);
+        pantalla.getFrames();
+        
+        
+        
         
         
             //pan.setLocationRelativeTo(null);
         }
-    public void mapa() {
+    public static void mapa() {
         
-        char[][] a=new char[2][6];
+        String[][] a=new String[2][6];
         for (int i = 0; i < a[0].length; i++) {
-            a[0][i] = 'O';
+            a[0][i] = "O";
+            a[1][i]="👺";
         }
-        for (int i = 0; i < a[1].length; i++) {
-            a[1][i] = 'V';  
-        }
-        a[0][ronda]='X';
+        a[1][0]="🎭";
+        a[1][1]="🌳";
+        a[1][2]="🌶️";
+        a[1][3]="📦";
+        a[1][4]="🛡️";
+        a[1][5]="👑️";
+        a[0][ronda]="X";
         switch (ronda){
-            case 5:a[1][5]='Z';
-            case 4:a[1][4]='Z';
-            case 3:a[1][3]='Z';
-            case 2:a[1][2]='Z';
-            case 1:a[1][1]='Z';
-            case 0:a[1][0]='Z';
+            case 6:a[1][5]="💀";
+            case 5:a[1][4]="💀";
+            case 4:a[1][3]="💀";
+            case 3:a[1][2]="💀";
+            case 2:a[1][1]="💀";
+            case 1:a[1][0]="💀";
+                    break;
         }
         JOptionPane.showMessageDialog(null,"🚩───"+a[0][0]+"──["+a[0][1]+" Jefe]───"+a[0][2]+"──["+a[0][3]+" Jefe]───"+a[0][4]+"──[👑"+a[0][5]+" Jefe Final]"+"\n"+
-                "────"+a[1][0]+"──["+a[1][1]+" ----]───"+a[1][2]+"──["+a[1][3]+" ----]───"+a[1][4]+"──[-"+a[1][5]+" ----------]");
+                "                      " + a[1][0] + a[1][1]+ a[1][2] + a[1][3]+ a[1][4] + a[1][5] + "lista de enemigos");
     }
     
     public static String toene(){
-        return  enen.getNombre() + "\n" + 
-               "vida: " + enen.getHp() + "\n" + 
-               "atk: " + enen.getAtkp()+ "\n" + 
-               "def: " + enen.getDefp()+ "\n";
+        return  ene.get(ronda).getNombre() + "\n" + 
+               "vida: " + ene.get(ronda).getHp() + "\n" + 
+               "atk: " + ene.get(ronda).getAtkp()+ "\n" + 
+               "def: " + ene.get(ronda).getDefp()+ "\n";
     }
     
-    public static void restableserenemigos() {
-        switch (ronda){
-            case 1:
-                enen.setNombre("¿un arbol?");
-                enen.setHp(13);
-                enen.setAtkp(1);
-                enen.setDefp(2);
-                break;
-            case 2:
-            enen.setNombre("EL chile");
-                enen.setHp(6);
-                enen.setAtkp(5);
-                enen.setDefp(0);
-                break;
-            case 3:
-                enen.setNombre("Una caja");
-                enen.setHp(15);
-                enen.setAtkp(2);
-                enen.setDefp(3);
-                break;
-            case 4:
-                enen.setNombre("tanque");
-                enen.setHp(20);
-                enen.setAtkp(0);
-                enen.setDefp(4);
-                break;
-            case 5:
-                enen.setNombre("¿El jefaso?");
-                enen.setHp(30);
-                enen.setAtkp(5);
-                enen.setDefp(5);
-                break;  
-        }
-    }
     public static String getNom() {
         return nom;
     }

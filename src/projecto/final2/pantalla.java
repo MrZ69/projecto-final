@@ -8,6 +8,8 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JOptionPane;
+import projecto.final2.enemigos; 
+import static projecto.final2.Projectofinal2.ronda;
 
 
 /**
@@ -25,9 +27,10 @@ public class pantalla extends javax.swing.JFrame {
     static int[] ec ={0,0,0,0,0,0,0};
     static int econt;
     static boolean seguier=true;
-    static enemigos enen=new enemigos();
+    static ArrayList<enemigos> ene= Projectofinal2.ene;
     card[] cards = Projectofinal2.getCards();
     public pantalla() {
+        
         setTitle("★w★");
         initComponents();
         
@@ -451,7 +454,7 @@ public class pantalla extends javax.swing.JFrame {
         ec[3]=52;
         ec[4]=52;
         ec[5]=52;
-        
+        Projectofinal2.mapa();
         seguier=true;
         bot();
         
@@ -505,48 +508,46 @@ public class pantalla extends javax.swing.JFrame {
     }
     public void resultados(int a,int[] v,int a2,int[]ev) {//resultado tuyo 
         String text="?";
-        /*boolean res1,res2;
-        if (a<=21)
-            res1=true;
-        else
-            res1=false;
-        if (a2<=21)
-            res2=true;
-        else
-            res2=false;
-        */
         int total=0;
         if (a>a2&& a<=21){//tu
             int atkp=Projectofinal2.getAtkp();
-            atkp=atkp+a-a2;
-            int defp=enen.getDefp();
-            int t=atkp-defp;
-            text=("ganaste la ronda entonces le hace "+ atkp +"menos la defensa del enemigo"+ defp +"="+t);
-            enen.setHp(enen.getHp()-t);
+            int atk=a-a2;
+            int defp=ene.get(ronda).getDefp();
+            int t=0;
+            if(defp<=(atkp+atk))
+                t=(atkp+atk)-defp;
+            text=("ganaste la ronda entonces le hace: "+ atk+"+"+atkp +" menos la defensa del enemigo: "+ defp +" total de = "+t);
+            ene.get(ronda).setHp(ene.get(ronda).getHp()-t);
         }
         
         else if (a2>a&& a2<=21){//ene
-            int atkp=enen.getAtkp();
-            atkp=atkp+a2-a;
+            int atkp=ene.get(ronda).getAtkp();
+            int atk=a2-a;
             int defp=Projectofinal2.getDefp();
-            int t=atkp-defp;
-            text=("el enemigo gano la ronda entonces te hace "+ atkp +"menos la defensa tuya"+ defp +"="+t);
+            int t=0;
+            if(defp<=(atkp+atk))
+                t=(atkp+atk)-defp;
+            text=("el enemigo gano la ronda entonces te hace: "+ atk +"+"+atkp +" menos la defensa tuya: "+ defp +" total de = "+t);
             Projectofinal2.setHp(Projectofinal2.getHp()-t);
         }
-        else if (a<21&&a2>21){//tu
+        else if (a<=21&&a2>21){//tu mientras falla ene
             int atkp=Projectofinal2.getAtkp();
-            atkp=atkp+a;
-            int defp=enen.getDefp();
-            int t=atkp-defp;
-            text=("el enemigo fallo y le hace critico de"+ atkp +"menos la defensa del enemigo"+ defp+"="+t);
-            enen.setHp(enen.getHp()-t);
+            int atk=a;
+            int defp=ene.get(ronda).getDefp();
+            int t=0;
+            if(defp<=(atkp+atk))
+                t=(atkp+atk)-defp;
+            text=("el enemigo fallo y le hace critico de: "+ atk +"+"+atkp +" menos la defensa del enemigo: "+ defp+" total de = "+t);
+            ene.get(ronda).setHp(ene.get(ronda).getHp()-t);
         }
-        else if (a2<21&&a>21){//ene
-            int atkp=enen.getAtkp();
-            atkp=atkp+a2;
+        else if (a2<=21&&a>21){//ene mientras falla tu
+            int atkp=ene.get(ronda).getAtkp();
+            int atk=a2;
             int defp=Projectofinal2.getDefp();
-            int t=atkp-defp;
-            text=("tu fallaste el ataque y te hace critico de"+ atkp +"menos la defensa tuya"+ + defp +"="+t);
+            int t=0;
+            if(defp<=(atkp+atk))
+                t=(atkp+atk)-defp;
+            text=("tu fallaste el ataque y te hace critico de: "+ atk +"+"+atkp +" menos la defensa tuya: "+ + defp +" total de = "+t);
             Projectofinal2.setHp(Projectofinal2.getHp()-t);
         }
         else if(a>21&& a2>21){
@@ -559,17 +560,33 @@ public class pantalla extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null,"tu valor es"+cards[v[0]].getVal()+""+cards[v[0]].getSim2()+"+"+cards[v[1]].getVal()+""+cards[v[1]].getSim2()+"+"+cards[v[2]].getVal()+""+cards[v[2]].getSim2()+"+"+cards[v[3]].getVal()+""+cards[v[3]].getSim2()+"+"+cards[v[4]].getVal()+""+cards[v[4]].getSim2()+"+"+cards[v[5]].getVal()+""+cards[v[5]].getSim2()+"="+a+"\n"+
                 "tu valor del enemigo es"+cards[ev[0]].getVal()+""+cards[ev[0]].getSim2()+"+"+cards[ev[1]].getVal()+""+cards[ev[1]].getSim2()+"+"+cards[ev[2]].getVal()+""+cards[ev[2]].getSim2()+"+"+cards[ev[3]].getVal()+""+cards[ev[3]].getSim2()+"+"+cards[ev[4]].getVal()+""+cards[ev[4]].getSim2()+"+"+cards[ev[5]].getVal()+""+cards[ev[5]].getSim2()+"="+a2+"\n"+
                 text);
+        JOptionPane.showMessageDialog(null,"????"+ene.get(ronda).toString());
+        
         if (Projectofinal2.getHp()<=0){
             JOptionPane.showMessageDialog(null,"perdistes");
             System.exit(0);
         }
-        if (enen.getHp()<=0){
-            JOptionPane.showMessageDialog(null,"ganastes1212");
-            Projectofinal2.setRonda(Projectofinal2.getRonda()+1);
-            Projectofinal2.restableserenemigos();
+        else if (ene.get(ronda).getHp()<=0){
+            JOptionPane.showMessageDialog(null,"ganastes"+ene.get(ronda).getHp());
+            ronda++;
+            Projectofinal2.mapa();
             reiniciarcard();
+            if (ronda==6){
+                JOptionPane.showMessageDialog(null, 
+                "                         88               \n" +
+                "                         \"\"               \n" +
+                "                                    \n" +
+                "8b      db      d8  88  8b,dPPYba,  \n" +
+                "`8b    d88b    d8'  88  88P'   `\"8a \n" +
+                " `8b  d8'`8b  d8'   88  88       88 \n" +
+                "  `8bd8'  `8bd8'    88  88       88 \n" +
+                "    YP      YP        88  88       88 \n" +
+                "                                    \n"
+                );
+                System.exit(0);
+            }
         }
-        //if (enemigos.vida)
+        
         
     }
     
