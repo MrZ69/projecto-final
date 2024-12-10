@@ -51,6 +51,7 @@ public class inicio extends javax.swing.JFrame {
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
         jTextArea1.setRows(5);
@@ -92,6 +93,7 @@ public class inicio extends javax.swing.JFrame {
         pantalla pan=new pantalla();
         pan.reiniciarcard();
         pan.reiniciarpantalla();
+        Projectofinal2.mapa();
         pan.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed

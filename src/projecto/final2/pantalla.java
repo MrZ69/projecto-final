@@ -454,7 +454,7 @@ public class pantalla extends javax.swing.JFrame {
         ec[3]=52;
         ec[4]=52;
         ec[5]=52;
-        Projectofinal2.mapa();
+        
         seguier=true;
         bot();
         
@@ -560,18 +560,18 @@ public class pantalla extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null,"tu valor es"+cards[v[0]].getVal()+""+cards[v[0]].getSim2()+"+"+cards[v[1]].getVal()+""+cards[v[1]].getSim2()+"+"+cards[v[2]].getVal()+""+cards[v[2]].getSim2()+"+"+cards[v[3]].getVal()+""+cards[v[3]].getSim2()+"+"+cards[v[4]].getVal()+""+cards[v[4]].getSim2()+"+"+cards[v[5]].getVal()+""+cards[v[5]].getSim2()+"="+a+"\n"+
                 "tu valor del enemigo es"+cards[ev[0]].getVal()+""+cards[ev[0]].getSim2()+"+"+cards[ev[1]].getVal()+""+cards[ev[1]].getSim2()+"+"+cards[ev[2]].getVal()+""+cards[ev[2]].getSim2()+"+"+cards[ev[3]].getVal()+""+cards[ev[3]].getSim2()+"+"+cards[ev[4]].getVal()+""+cards[ev[4]].getSim2()+"+"+cards[ev[5]].getVal()+""+cards[ev[5]].getSim2()+"="+a2+"\n"+
                 text);
-        JOptionPane.showMessageDialog(null,"????"+ene.get(ronda).toString());
+        
         
         if (Projectofinal2.getHp()<=0){
             JOptionPane.showMessageDialog(null,"perdistes");
             System.exit(0);
         }
         else if (ene.get(ronda).getHp()<=0){
-            JOptionPane.showMessageDialog(null,"ganastes"+ene.get(ronda).getHp());
+            JOptionPane.showMessageDialog(null,"ganastes conseguistes +10 de hp,atkp+1 y defp+1");
+            Projectofinal2.up();
             ronda++;
-            Projectofinal2.mapa();
-            reiniciarcard();
-            if (ronda==6){
+            
+            if (ronda>=6){
                 JOptionPane.showMessageDialog(null, 
                 "                         88               \n" +
                 "                         \"\"               \n" +
@@ -585,6 +585,8 @@ public class pantalla extends javax.swing.JFrame {
                 );
                 System.exit(0);
             }
+            Projectofinal2.mapa();
+            reiniciarcard();
         }
         
         

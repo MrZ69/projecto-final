@@ -31,18 +31,16 @@ public class Projectofinal2 {
     
     //todas las variables que necesitare en la mayoria de la clase y lo pongo en global
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        Scanner tl = new Scanner(System.in);
-        Random rand=new Random();
+
         inicio ini=new inicio ();
-        pantalla pan=new pantalla();
         
-        ene.add(new enemigos("muñeco", 10, 0, 2,true));
-        ene.add(new enemigos("🌳¿un arbol?🌳", 23, 1, 2,true));
-        ene.add(new enemigos("🌶EL chile🌶️", 20, 5, 0, true));
-        ene.add(new enemigos("📦Una caja📦", 25, 2, 3,true));
-        ene.add(new enemigos("🛡tanque🛡️", 30, 0, 4,true));
-        ene.add(new enemigos("👑¿El jefaso?👑", 40, 5, 5,true));
+        
+        ene.add(new enemigos("muñeco", 10, 0, 1,true));
+        ene.add(new enemigos("🌳¿un arbol?🌳", 23, 1, 1,true));
+        ene.add(new enemigos("🌶EL chile🌶️", 20, 3, 0, true));
+        ene.add(new enemigos("📦Una caja📦", 25, 2, 2,true));
+        ene.add(new enemigos("🛡tanque🛡️", 30, 0, 3,true));
+        ene.add(new enemigos("👑¿El jefaso?👑", 40, 4, 4,true));
         //todavia no
         
         
@@ -105,7 +103,7 @@ public class Projectofinal2 {
         String[][] a=new String[2][6];
         for (int i = 0; i < a[0].length; i++) {
             a[0][i] = "O";
-            a[1][i]="👺";
+            
         }
         a[1][0]="🎭";
         a[1][1]="🌳";
@@ -113,6 +111,7 @@ public class Projectofinal2 {
         a[1][3]="📦";
         a[1][4]="🛡️";
         a[1][5]="👑️";
+        if (ronda<6)
         a[0][ronda]="X";
         switch (ronda){
             case 6:a[1][5]="💀";
@@ -126,7 +125,11 @@ public class Projectofinal2 {
         JOptionPane.showMessageDialog(null,"🚩───"+a[0][0]+"──["+a[0][1]+" Jefe]───"+a[0][2]+"──["+a[0][3]+" Jefe]───"+a[0][4]+"──[👑"+a[0][5]+" Jefe Final]"+"\n"+
                 "                      " + a[1][0] + a[1][1]+ a[1][2] + a[1][3]+ a[1][4] + a[1][5] + "lista de enemigos");
     }
-    
+    public static void up(){
+      hp=hp+10;
+      atkp=atkp+1;
+      defp=defp+1;
+    }
     public static String toene(){
         return  ene.get(ronda).getNombre() + "\n" + 
                "vida: " + ene.get(ronda).getHp() + "\n" + 
@@ -185,7 +188,7 @@ public class Projectofinal2 {
         Random rand=new Random();
         int a;
         do{
-        a = rand.nextInt(0,52);//0,52 ponerlo bien depuesaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+        a = rand.nextInt(0,52);//0,52 ponerlo bien 
         
         /*int alv =rand.nextInt(0,2);
         if (alv==0)
